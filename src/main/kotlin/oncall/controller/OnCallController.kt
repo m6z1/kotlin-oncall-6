@@ -1,7 +1,6 @@
 package oncall.controller
 
-import oncall.model.AssignmentMonth
-import oncall.model.Worker
+import oncall.model.*
 import oncall.view.InputView
 
 class OnCallController(
@@ -9,9 +8,27 @@ class OnCallController(
 ) {
 
     fun start() {
-        val month = getOnCallMonth()
+        val assignmentMonth = getOnCallMonth()
+        val monthGenerator = MonthGenerator(assignmentMonth)
+        val month = monthGenerator.generateMonth()
         val (weekdaysWorkers, holidayWorkers) = getWorkers()
+        val schedule = mutableListOf<WorkSchedule>()
+        month.forEach { day ->
+            when (day.dayType) {
+                DayType.WEEKDAYS -> {
+                    weekdaysWorkers.forEach { worker ->
+                        schedule.add(WorkSchedule(worker, day))
+                    }
+                }
 
+                DayType.HOLIDAYS -> {
+                    holidayWorkers.forEach { worker ->
+                        schedule.add(WorkSchedule(worker, day))
+                    }
+                }
+            }
+        }
+        println(schedule)
     }
 
     private fun getOnCallMonth(): AssignmentMonth {
