@@ -15,4 +15,21 @@ class InputView {
 
         return AssignmentMonth(month, startWeekOfMonth)
     }
+
+    fun readOnCallWeekdays(): List<Worker> {
+        println("평일 비상 근무 순번대로 사원 닉네임을 입력하세요> ")
+        val workersOfWeekdays = Console.readLine().split(",")
+        require(workersOfWeekdays.distinct().size == workersOfWeekdays.size) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
+        require(workersOfWeekdays.size in 5..35) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
+
+        return workersOfWeekdays.map { workerNickName -> Worker.from(workerNickName) }
+    }
+
+    fun readOnCallHolidays(): List<Worker> {
+        println("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ")
+        val workersOfHolidays = Console.readLine().split(",")
+        require(workersOfHolidays.distinct().size == workersOfHolidays.size) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
+        require(workersOfHolidays.size in 5..35) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
+        return workersOfHolidays.map { workerNickName -> Worker.from(workerNickName) }
+    }
 }

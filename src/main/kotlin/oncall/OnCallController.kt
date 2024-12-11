@@ -6,5 +6,7 @@ class OnCallController(
 
     fun start() {
         val assignmentMonth = inputView.readOnCallMonth()
+        val workersOfWeekdays = Workers.from(workers = inputView.readOnCallWeekdays())
+        val workersOfHolidays = Workers.from(workers = inputView.readOnCallHolidays())
     }
 }
