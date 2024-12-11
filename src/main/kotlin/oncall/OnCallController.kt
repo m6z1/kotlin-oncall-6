@@ -6,7 +6,17 @@ class OnCallController(
 
     fun start() {
         val assignmentMonth = inputView.readOnCallMonth()
-        val workersOfWeekdays = Workers.from(workers = inputView.readOnCallWeekdays())
-        val workersOfHolidays = Workers.from(workers = inputView.readOnCallHolidays())
+        val workersOfWeekdays = inputView.readOnCallWeekdays()
+        val workersOfHolidays = inputView.readOnCallHolidays()
+
+        var count = 0
+        workersOfHolidays.forEach { worker1 ->
+            workersOfWeekdays.forEach {
+                if (it.getWorkerNickName() == worker1.getWorkerNickName()) count++
+            }
+        }
+        if (count == workersOfHolidays.size && workersOfHolidays.size == workersOfWeekdays.size) {
+            // TODO: 이어서
+        }
     }
 }
