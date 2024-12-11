@@ -1,4 +1,4 @@
-package oncall
+package oncall.model
 
 enum class Week(private val title: String) {
     SUNDAY("일"),

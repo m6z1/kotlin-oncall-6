@@ -1,4 +1,6 @@
-package oncall
+package oncall.controller
+
+import oncall.view.InputView
 
 class OnCallController(
     private val inputView: InputView,
@@ -10,13 +12,13 @@ class OnCallController(
         val workersOfHolidays = inputView.readOnCallHolidays()
 
         var count = 0
-        workersOfHolidays.forEach { worker1 ->
+        workersOfHolidays.forEach { holidaysWorker ->
             workersOfWeekdays.forEach {
-                if (it.getWorkerNickName() == worker1.getWorkerNickName()) count++
+                if (it.getWorkerNickName() == holidaysWorker.getWorkerNickName()) count++
             }
         }
         if (count == workersOfHolidays.size && workersOfHolidays.size == workersOfWeekdays.size) {
-            // TODO: 이어서
+
         }
     }
 }

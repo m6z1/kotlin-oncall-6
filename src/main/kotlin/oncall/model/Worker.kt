@@ -1,4 +1,4 @@
-package oncall
+package oncall.model
 
 class Worker(private val nickName: String) {
 
