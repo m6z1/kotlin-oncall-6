@@ -1,5 +1,8 @@
 package oncall
 
 fun main() {
-    println("하이")
+    val inputView = InputView()
+    val onCallController = OnCallController(inputView)
+
+    onCallController.start()
 }
